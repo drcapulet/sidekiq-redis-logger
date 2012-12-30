@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'sidekiq-redis-logger/version'
+require "sidekiq/redis-logger/version"
 
 Gem::Specification.new do |gem|
   gem.name          = "sidekiq-redis-logger"
-  gem.version       = Sidekiq::Redis::Logger::VERSION
+  gem.version       = Sidekiq::RedisLogger::VERSION
   gem.authors       = ["Alex Coomans"]
   gem.email         = ["alex@alexcoomans.com"]
   gem.description   = %q{TODO: Write a gem description}
