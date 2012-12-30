@@ -17,4 +17,4 @@ if Sidekiq::Web.tabs.is_a?(Array)
 else
   Sidekiq::Web.tabs["Logs"] = "logs"
 end
-Sidekiq::Web.register Sidekiq::RedisLogger::Web
+Sidekiq::Web.register Sidekiq::RedisLogger::WebExtension
