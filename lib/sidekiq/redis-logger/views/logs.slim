@@ -1,0 +1,12 @@
+h3 Logs
+
+pre
+  code id="log"
+    Loading...
+    
+javascript:
+  $(function () {
+    setInterval(function(){
+      $("#log-output").load("#{root_path}logs/poll");
+    }, 3000);
+  });

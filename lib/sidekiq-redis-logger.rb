@@ -1,0 +1,1 @@
+require "sidekiq/redis-logger"
