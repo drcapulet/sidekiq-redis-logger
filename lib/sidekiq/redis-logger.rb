@@ -15,6 +15,6 @@ if Sidekiq::Web.tabs.is_a?(Array)
   # For sidekiq < 2.5
   Sidekiq::Web.tabs << "logs"
 else
-  Sidekiq::Web.tabs["Logs"] = "Logs"
+  Sidekiq::Web.tabs["Logs"] = "logs"
 end
 Sidekiq::Web.register Sidekiq::RedisLogger::Web
