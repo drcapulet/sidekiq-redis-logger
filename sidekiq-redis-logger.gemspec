@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["alex@alexcoomans.com"]
   gem.description   = %q{Direct Sidekiq logs into Redis as well}
   gem.summary       = %q{Direct Sidekiq logs into Redis as well and provide a web UI tab for watching}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/drcapulet/sidekiq-redis-logger"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
