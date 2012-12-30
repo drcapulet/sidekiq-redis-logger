@@ -17,9 +17,9 @@ module Sidekiq
         app.get "/logs/poll" do
           Sidekiq.redis do |conn|
             if params[:jid]
-              conn.exists("logger:#{params[:jid]}") ? conn.lrange("logger:#{jid}", 0, -1).reverse.join : "No log"
+              conn.exists("logger:#{params[:jid]}") ? conn.lrange("logger:#{jid}", 0, 1000).reverse.join : "No log"
             else
-              conn.lrange("logger", 0, -1).reverse.join("\n")
+              conn.lrange("logger", 0, 1000).reverse.join
             end
           end
         end
