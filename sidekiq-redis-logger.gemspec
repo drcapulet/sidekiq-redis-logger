@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Sidekiq::RedisLogger::VERSION
   gem.authors       = ["Alex Coomans"]
   gem.email         = ["alex@alexcoomans.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{Direct Sidekiq logs into Redis as well}
+  gem.summary       = %q{Direct Sidekiq logs into Redis as well and provide a web UI tab for watching}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
