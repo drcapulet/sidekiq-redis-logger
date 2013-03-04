@@ -2,16 +2,9 @@ module Sidekiq
   module RedisLogger
     module WebExtension
       def self.registered(app)
-        app.helpers do
-          def find_template(view, *a, &b)
-            dir = File.expand_path("../views/", __FILE__)
-            super(dir, *a, &b)
-            super
-          end
-        end
-        
         app.get "/logs" do
-          slim :logs
+          view_path = File.expand_path("../views/", __FILE__)
+          render(:slim, File.read(File.join(view_path, 'logs.slim')))
         end
       
         app.get "/logs/poll" do
