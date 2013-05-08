@@ -8,7 +8,7 @@ Sidekiq.configure_server do |config|
   config.server_middleware do |chain|
     chain.insert_before Sidekiq::Middleware::Server::Logging, Sidekiq::RedisLogger::Middleware
   end
-  config.logger = Sidekiq::RedisLogger::Logger.new(Sidekiq::Logging.logger)
+  config.logger = Sidekiq::RedisLogger::Logger.new(Sidekiq.logger)
 end
 
 if Sidekiq::Web.tabs.is_a?(Array)

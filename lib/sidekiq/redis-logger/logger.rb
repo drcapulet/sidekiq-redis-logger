@@ -46,12 +46,14 @@ module Sidekiq
           end
         end
         msg = format_message(format_severity(severity), Time.now, progname, message)
-        Sidekiq.redis do |conn|
-          jid = Thread.current[:sidekiq_jid]
-          conn.lpush("logger:#{jid}", msg) if jid
-          conn.expire("logger:#{jid}", 20 * 60) if jid
-          conn.lpush("logger", msg)
-          conn.ltrim("logger", 0, @limit - 1)
+        if Sidekiq.instance_variable_get(:@redis)
+          Sidekiq.redis do |conn|
+            jid = Thread.current[:sidekiq_jid]
+            conn.lpush("logger:#{jid}", msg) if jid
+            conn.expire("logger:#{jid}", 20 * 60) if jid
+            conn.lpush("logger", msg)
+            conn.ltrim("logger", 0, @limit - 1)
+          end
         end
         @alt.add(severity, message, progname) if @alt
         return true
@@ -59,12 +61,14 @@ module Sidekiq
       alias log add
 
       def <<(msg)
-        Sidekiq.redis do |conn|
-          jid = Thread.current[:sidekiq_jid]
-          conn.lpush("logger:#{jid}", msg) if jid
-          conn.expire("logger:#{jid}", 20 * 60) if jid
-          conn.lpush("logger", msg)
-          conn.ltrim("logger", 0, @limit - 1)
+        if Sidekiq.instance_variable_get(:@redis)
+          Sidekiq.redis do |conn|
+            jid = Thread.current[:sidekiq_jid]
+            conn.lpush("logger:#{jid}", msg) if jid
+            conn.expire("logger:#{jid}", 20 * 60) if jid
+            conn.lpush("logger", msg)
+            conn.ltrim("logger", 0, @limit - 1)
+          end
         end
         @alt << msg if @alt
       end
