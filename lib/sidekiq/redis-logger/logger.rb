@@ -76,22 +76,27 @@ module Sidekiq
       def debug(progname = nil, &block)
         add(DEBUG, nil, progname, &block)
       end
+      def debug?; @level <= DEBUG; end
 
       def info(progname = nil, &block)
         add(INFO, nil, progname, &block)
       end
+      def info?; @level <= INFO; end
 
       def warn(progname = nil, &block)
         add(WARN, nil, progname, &block)
       end
+      def warn?; @level <= WARN; end
 
       def error(progname = nil, &block)
         add(ERROR, nil, progname, &block)
       end
+      def error?; @level <= ERROR; end
 
       def fatal(progname = nil, &block)
         add(FATAL, nil, progname, &block)
       end
+      def fatal?; @level <= FATAL; end
 
       def unknown(progname = nil, &block)
         add(UNKNOWN, nil, progname, &block)
